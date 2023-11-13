@@ -1,85 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/layout/main_layout.dart';
+import 'package:hello_world/screen/route/route_one_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('버튼'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                // 메인 컬러
-                backgroundColor: Colors.red,
-                // 글자 및 애니메이션 컬러
-                foregroundColor: Colors.black,
-                // 그림자 컬러
-                shadowColor: Colors.green,
-                // 입체감의 높이
-                elevation: 10.0,
-                // 텍스트 스타일 설정
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20.0,
-                ),
-                // 버튼 내부 Padding 설정
-                padding: EdgeInsets.all(32.0),
-                // 버튼 경계 설정
-                side: BorderSide(
-                  color: Colors.black,
-                  width: 4.0,
-                ),
-              ),
-              onPressed: () {},
-              child: Text('ElevatedButton'),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                  Colors.black,
-                ),
-                // MaterialStateProperty.resolveWith 기능에 의해 버튼의 동작에 따라 스타일 지정
-                foregroundColor: MaterialStateProperty.resolveWith(
-                    (Set<MaterialState> states) {
-                  // 버튼이 눌렸을때
-                  if (states.contains(MaterialState.pressed)) {
-                    return Colors.white;
-                  }
+    // WillPopScope: 시스템에서의 뒤로가기(Pop) 기능 제어
+    return WillPopScope(
+      onWillPop: () async {
+        // true: 뒤로가기 누르면 앱 종료
+        // false: 뒤로가기 눌러도 앱이 종료되지 않음
+        final canPop = Navigator.of(context).canPop();
 
-                  return Colors.red;
-                }),
-                padding: MaterialStateProperty.resolveWith(
-                    (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.pressed)) {
-                    return EdgeInsets.all(40.0);
-                  }
-
-                  return EdgeInsets.all(20.0);
-                }),
-              ),
-              onPressed: () {},
-              child: Text('DynamicStyledButton'),
+        return canPop;
+      },
+      child: MainLayout(
+        title: 'Home Screen',
+        children: [
+          ElevatedButton(
+            // number라는 인자값을 전달하여 해당 스크린으로(RouteOneScreen) 이동
+            onPressed: () async {
+              final result = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => RouteOneScreen(
+                    number: 123,
+                  ),
+                ),
+              );
+            },
+            child: Text(
+              'Push 1',
             ),
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(),
-              onPressed: () {},
-              child: Text('OutlinedButton'),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(),
-              onPressed: () {},
-              child: Text('TextButton'),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
