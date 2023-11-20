@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/layout/main_layout.dart';
+import 'package:hello_world/layout/main_layout_list.dart';
 import 'package:hello_world/screen/route/route_two_screen.dart';
 
 class RouteOneScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class RouteOneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainLayout(
+    return MainLayoutList(
       title: 'RouteOne',
       children: [
         Text(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/layout/main_layout.dart';
+import 'package:hello_world/layout/main_layout_list.dart';
 
 class RouteThreeScreen extends StatelessWidget {
   const RouteThreeScreen({super.key});
@@ -8,7 +8,7 @@ class RouteThreeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final argument = ModalRoute.of(context)!.settings.arguments;
 
-    return MainLayout(title: 'RouteThree', children: [
+    return MainLayoutList(title: 'RouteThree', children: [
       Text(
         'arguments: ${argument}',
         textAlign: TextAlign.center,

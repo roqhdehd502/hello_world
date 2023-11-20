@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class MainLayout extends StatelessWidget {
   final String title;
-  final List<Widget> children;
+  final Widget body;
 
-  const MainLayout({required this.title, required this.children, super.key});
+  const MainLayout({
+    required this.title,
+    required this.body,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +16,7 @@ class MainLayout extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 8.0,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: children,
-        ),
-      ),
+      body: body,
     );
-    ;
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/layout/main_layout.dart';
+import 'package:hello_world/layout/main_layout_list.dart';
 import 'package:hello_world/screen/route/route_three_screen.dart';
 
 class RouteTwoScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class RouteTwoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments;
 
-    return MainLayout(
+    return MainLayoutList(
       title: 'RouteTwo',
       children: [
         Text(

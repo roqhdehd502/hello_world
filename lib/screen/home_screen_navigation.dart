@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/layout/main_layout.dart';
+import 'package:hello_world/layout/main_layout_list.dart';
 import 'package:hello_world/screen/route/route_one_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
 
         return canPop;
       },
-      child: MainLayout(
+      child: MainLayoutList(
         title: 'Home Screen',
         children: [
           ElevatedButton(
