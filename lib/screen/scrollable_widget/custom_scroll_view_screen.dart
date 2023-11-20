@@ -8,15 +8,19 @@ class CustomScrollViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          renderSliverAppbar(),
-          // SliverList
-          //renderSliverChildBuilderDelegate(),
-          // SliverGrid
-          renderSliverGridSliverChildBuilderDelegate(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            renderSliverAppbar(),
+            renderHeader(),
+            // SliverList
+            renderSliverListSliverChildBuilderDelegate(),
+            renderHeader(),
+            // SliverGrid
+            renderSliverGridSliverChildBuilderDelegate(),
+          ],
+        ),
       ),
     );
   }
@@ -35,6 +39,21 @@ class CustomScrollViewScreen extends StatelessWidget {
         title: Text('Flex'),
       ),
       title: Text('CustomScrollViewScreen'),
+    );
+  }
+
+  // SliverPersistentHeader
+  SliverPersistentHeader renderHeader() {
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: _SliverFixedHeaderDelegate(
+        child: Container(
+          color: Colors.white,
+          child: Center(child: Text('요잉크')),
+        ),
+        maxHeight: 150.0,
+        minHeight: 75.0,
+      ),
     );
   }
 
@@ -127,5 +146,42 @@ class CustomScrollViewScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// 별도의 Header를 pin하거나 float를 하는 위젯
+class _SliverFixedHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+  final double maxHeight;
+  final double minHeight;
+
+  _SliverFixedHeaderDelegate({
+    required this.child,
+    required this.maxHeight,
+    required this.minHeight,
+  });
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(
+      child: child,
+    );
+  }
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  double get minExtent => minHeight;
+
+  // shouldRebuild: build를 새로할지 여부 결정
+  // oldDelegate: build가 실행이 됐을때 이전 delegate
+  // this: 새로운 delegate
+  @override
+  bool shouldRebuild(_SliverFixedHeaderDelegate oldDelegate) {
+    return oldDelegate.minHeight != minHeight ||
+        oldDelegate.maxHeight != maxHeight ||
+        oldDelegate.child != child;
   }
 }
