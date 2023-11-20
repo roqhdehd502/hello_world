@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/component/render_container.dart';
 import 'package:hello_world/const/colors.dart';
 import 'package:hello_world/layout/main_layout.dart';
 
@@ -26,7 +27,7 @@ class _ReorderableListViewScreenState extends State<ReorderableListViewScreen> {
     return ReorderableListView(
       children: numbers
           .map(
-            (e) => renderContainer(
+            (e) => RenderContainer(
               color: rainbowColors[e % rainbowColors.length],
               index: e,
             ),
@@ -60,9 +61,10 @@ class _ReorderableListViewScreenState extends State<ReorderableListViewScreen> {
       itemBuilder: (context, index) {
         // 기본적인 builder의 경우, index를 그대로 받으면 지정한 index 그대로 지정이 되어 렌더링을 한다.
         // 따라서, Reorder를 하여 n번째 인덱스의 Widget을 m번째로 옮겨도 그대로 렌더링이 되길 원하면 가져오고자 하는 배열 데이터의 index를 참조한다.
-        return renderContainer(
+        return RenderContainer(
           color: rainbowColors[numbers[index] % rainbowColors.length],
           index: numbers[index],
+          key: ValueKey(numbers[index]),
         );
       },
       itemCount: 100,
@@ -74,29 +76,6 @@ class _ReorderableListViewScreenState extends State<ReorderableListViewScreen> {
           numbers.insert(newIndex, item);
         });
       },
-    );
-  }
-
-  Widget renderContainer({
-    required Color color,
-    required int index,
-    double? height,
-  }) {
-    print(index);
-    return Container(
-      key: Key(index.toString()),
-      height: height ?? 300,
-      color: color,
-      child: Center(
-        child: Text(
-          index.toString(),
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 30.0,
-          ),
-        ),
-      ),
     );
   }
 }

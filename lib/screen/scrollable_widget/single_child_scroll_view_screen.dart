@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/component/render_container.dart';
 import 'package:hello_world/const/colors.dart';
 import 'package:hello_world/layout/main_layout.dart';
 
@@ -24,9 +25,8 @@ class SingleChildScrollViewScreen extends StatelessWidget {
       child: Column(
         children: numbers
             .map(
-              (e) => renderContainer(
-                color: rainbowColors[e % rainbowColors.length],
-              ),
+              (e) => RenderContainer(
+                  color: rainbowColors[e % rainbowColors.length], index: e),
             )
             .toList(),
       ),
@@ -43,7 +43,10 @@ class SingleChildScrollViewScreen extends StatelessWidget {
       physics: AlwaysScrollableScrollPhysics(),
       child: Column(
         children: [
-          renderContainer(color: Colors.black),
+          RenderContainer(
+            color: Colors.black,
+            index: 0,
+          ),
         ],
       ),
     );
@@ -56,7 +59,10 @@ class SingleChildScrollViewScreen extends StatelessWidget {
       physics: AlwaysScrollableScrollPhysics(),
       child: Column(
         children: [
-          renderContainer(color: Colors.black),
+          RenderContainer(
+            color: Colors.black,
+            index: 0,
+          ),
         ],
       ),
     );
@@ -68,24 +74,13 @@ class SingleChildScrollViewScreen extends StatelessWidget {
       child: Column(
         children: numbers
             .map(
-              (e) => renderContainer(
+              (e) => RenderContainer(
                 color: rainbowColors[e % rainbowColors.length],
                 index: e,
               ),
             )
             .toList(),
       ),
-    );
-  }
-
-  Widget renderContainer({
-    required Color color,
-    int? index,
-  }) {
-    if (index != null) print(index);
-    return Container(
-      height: 300,
-      color: color,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/component/render_container.dart';
 import 'package:hello_world/const/colors.dart';
 import 'package:hello_world/layout/main_layout.dart';
 
@@ -23,7 +24,7 @@ class ListViewScreen extends StatelessWidget {
     return ListView(
       children: numbers
           .map(
-            (e) => renderContainer(
+            (e) => RenderContainer(
               color: rainbowColors[e % rainbowColors.length],
               index: e,
             ),
@@ -37,7 +38,7 @@ class ListViewScreen extends StatelessWidget {
     return ListView.builder(
       itemCount: 100,
       itemBuilder: (context, index) {
-        return renderContainer(
+        return RenderContainer(
           color: rainbowColors[index % rainbowColors.length],
           index: index,
         );
@@ -51,7 +52,7 @@ class ListViewScreen extends StatelessWidget {
       separatorBuilder: (context, index) {
         index += 1;
         if (index % 5 == 0) {
-          return renderContainer(
+          return RenderContainer(
             color: Colors.black,
             index: index,
             height: 100.0,
@@ -61,7 +62,7 @@ class ListViewScreen extends StatelessWidget {
       },
       itemCount: 100,
       itemBuilder: (context, index) {
-        return renderContainer(
+        return RenderContainer(
           color: rainbowColors[index % rainbowColors.length],
           index: index,
         );
@@ -69,25 +70,25 @@ class ListViewScreen extends StatelessWidget {
     );
   }
 
-  Widget renderContainer({
-    required Color color,
-    required int index,
-    double? height,
-  }) {
-    print(index);
-    return Container(
-      height: height ?? 300,
-      color: color,
-      child: Center(
-        child: Text(
-          index.toString(),
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 30.0,
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget RenderContainer({
+  //   required Color color,
+  //   required int index,
+  //   double? height,
+  // }) {
+  //   print(index);
+  //   return Container(
+  //     height: height ?? 300,
+  //     color: color,
+  //     child: Center(
+  //       child: Text(
+  //         index.toString(),
+  //         style: TextStyle(
+  //           color: Colors.white,
+  //           fontWeight: FontWeight.w700,
+  //           fontSize: 30.0,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

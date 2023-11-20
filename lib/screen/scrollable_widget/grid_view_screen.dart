@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/component/render_container.dart';
 import 'package:hello_world/const/colors.dart';
 import 'package:hello_world/layout/main_layout.dart';
 
@@ -26,7 +27,7 @@ class GridViewScreen extends StatelessWidget {
       crossAxisSpacing: 12.0,
       children: numbers
           .map(
-            (e) => renderContainer(
+            (e) => RenderContainer(
               color: rainbowColors[e % rainbowColors.length],
               index: e,
             ),
@@ -44,33 +45,11 @@ class GridViewScreen extends StatelessWidget {
         maxCrossAxisExtent: 200,
       ),
       itemBuilder: (context, index) {
-        return renderContainer(
+        return RenderContainer(
           color: rainbowColors[index % rainbowColors.length],
           index: index,
         );
       },
-    );
-  }
-
-  Widget renderContainer({
-    required Color color,
-    required int index,
-    double? height,
-  }) {
-    print(index);
-    return Container(
-      height: height ?? 300,
-      color: color,
-      child: Center(
-        child: Text(
-          index.toString(),
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 30.0,
-          ),
-        ),
-      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/component/render_container.dart';
 import 'package:hello_world/const/colors.dart';
 import 'package:hello_world/layout/main_layout.dart';
 
@@ -16,35 +17,12 @@ class ScrollbarScreen extends StatelessWidget {
           child: Column(
             children: numbers
                 .map(
-                  (e) => renderContainer(
+                  (e) => RenderContainer(
                     color: rainbowColors[e % rainbowColors.length],
                     index: e,
                   ),
                 )
                 .toList(),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget renderContainer({
-    required Color color,
-    required int index,
-    double? height,
-  }) {
-    print(index);
-    return Container(
-      key: Key(index.toString()),
-      height: height ?? 300,
-      color: color,
-      child: Center(
-        child: Text(
-          index.toString(),
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 30.0,
           ),
         ),
       ),
