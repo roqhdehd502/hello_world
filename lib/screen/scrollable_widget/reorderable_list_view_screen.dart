@@ -22,7 +22,7 @@ class _ReorderableListViewScreenState extends State<ReorderableListViewScreen> {
   }
 
   // 기본적인 ReorderableListView
-  Widget renderReorderableListViewCaseOne() {
+  ReorderableListView renderReorderableListViewCaseOne() {
     return ReorderableListView(
       children: numbers
           .map(
@@ -55,7 +55,7 @@ class _ReorderableListViewScreenState extends State<ReorderableListViewScreen> {
   }
 
   // builder를 이용한 ReorderableListView (최적화)
-  Widget renderReorderableListViewCaseTwo() {
+  ReorderableListView renderReorderableListViewCaseTwo() {
     return ReorderableListView.builder(
       itemBuilder: (context, index) {
         // 기본적인 builder의 경우, index를 그대로 받으면 지정한 index 그대로 지정이 되어 렌더링을 한다.

@@ -19,7 +19,7 @@ class GridViewScreen extends StatelessWidget {
   }
 
   // count를 이용하여 한 번에 GridView를 렌더링
-  Widget renderGridViewCaseOne() {
+  GridView renderGridViewCaseOne() {
     return GridView.count(
       crossAxisCount: 2,
       mainAxisSpacing: 12.0,
@@ -36,7 +36,7 @@ class GridViewScreen extends StatelessWidget {
   }
 
   // builder를 이용하여 필요한 만큼만 화면에 GridView를 렌더링 (최적화)
-  Widget renderGridViewCaseTwo() {
+  GridView renderGridViewCaseTwo() {
     return GridView.builder(
       // SliverGridDelegateWithFixedCrossAxisCount: Row당 Widget들의 최대 갯수 설정
       // SliverGridDelegateWithMaxCrossAxisExtent: Row 내 Widget 당 최대 width 설정

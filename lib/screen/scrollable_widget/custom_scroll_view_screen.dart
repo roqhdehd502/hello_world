@@ -14,14 +14,17 @@ class CustomScrollViewScreen extends StatelessWidget {
           SliverAppBar(
             title: Text('CustomScrollViewScreen'),
           ),
-          renderSliverChildBuilderDelegate(),
+          // SliverList
+          //renderSliverChildBuilderDelegate(),
+          // SliverGrid
+          renderSliverGridSliverChildBuilderDelegate(),
         ],
       ),
     );
   }
 
   // SliverChildListDelegate를 이용한 기본적인 SliverList
-  Widget renderSliverChildListDelegate() {
+  SliverList renderSliverListSliverChildListDelegate() {
     return SliverList(
       delegate: SliverChildListDelegate(
         numbers
@@ -37,7 +40,7 @@ class CustomScrollViewScreen extends StatelessWidget {
   }
 
   // SliverChildBuilderDelegate를 이용한 SliverList 최적화
-  Widget renderSliverChildBuilderDelegate() {
+  SliverList renderSliverListSliverChildBuilderDelegate() {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -47,6 +50,43 @@ class CustomScrollViewScreen extends StatelessWidget {
           );
         },
         childCount: numbers.length,
+      ),
+    );
+  }
+
+  // SliverChildListDelegate를 이용한 기본적인 SliverGrid
+  SliverGrid renderSliverGridSliverChildListDelegate() {
+    return SliverGrid(
+      delegate: SliverChildListDelegate(
+        numbers
+            .map(
+              (e) => renderContainer(
+                color: rainbowColors[e % rainbowColors.length],
+                index: e,
+              ),
+            )
+            .toList(),
+      ),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+    );
+  }
+
+  // SliverChildBuilderDelegate를 이용한 SliverGrid 최적화
+  SliverGrid renderSliverGridSliverChildBuilderDelegate() {
+    return SliverGrid(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return renderContainer(
+            color: rainbowColors[index % rainbowColors.length],
+            index: index,
+          );
+        },
+        childCount: numbers.length,
+      ),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
       ),
     );
   }

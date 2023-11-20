@@ -19,12 +19,22 @@ class SingleChildScrollViewScreen extends StatelessWidget {
   }
 
   // 기본 SingleScrollView 렌더링
-  Widget renderSingleScrollViewCaseOne() {
-    return renderSingleScrollViewCaseFour();
+  SingleChildScrollView renderSingleScrollViewCaseOne() {
+    return SingleChildScrollView(
+      child: Column(
+        children: numbers
+            .map(
+              (e) => renderContainer(
+                color: rainbowColors[e % rainbowColors.length],
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 
   // physics의 옵션을 이용하여 스크롤 유무 설정 가능한 SingleScrollView 렌더링
-  Widget renderSingleScrollViewCaseTwo() {
+  SingleChildScrollView renderSingleScrollViewCaseTwo() {
     return SingleChildScrollView(
       // NeverScrollableScrollPhysics: 스크롤 불가
       // AlwaysScrollableScrollPhysics: 항상 스크롤 가능하게
@@ -40,7 +50,7 @@ class SingleChildScrollViewScreen extends StatelessWidget {
   }
 
   // clipBehavior 옵션을 이용하여 스크롤을 해도 위젯 잘림 유무 설정
-  Widget renderSingleScrollViewCaseThree() {
+  SingleChildScrollView renderSingleScrollViewCaseThree() {
     return SingleChildScrollView(
       clipBehavior: Clip.none,
       physics: AlwaysScrollableScrollPhysics(),
@@ -53,7 +63,7 @@ class SingleChildScrollViewScreen extends StatelessWidget {
   }
 
   // 주의! 다량의 데이터를 렌더링 할 때에는 퍼포먼스를 이유로 ListView를 이용한다
-  Widget renderSingleScrollViewCaseFour() {
+  SingleChildScrollView renderSingleScrollViewCaseFour() {
     return SingleChildScrollView(
       child: Column(
         children: numbers

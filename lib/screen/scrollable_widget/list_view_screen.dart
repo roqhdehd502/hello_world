@@ -19,7 +19,7 @@ class ListViewScreen extends StatelessWidget {
   }
 
   // 기본적인 ListView 렌더링
-  Widget renderListViewCaseOne() {
+  ListView renderListViewCaseOne() {
     return ListView(
       children: numbers
           .map(
@@ -33,7 +33,7 @@ class ListViewScreen extends StatelessWidget {
   }
 
   // builder를 이용하여 보여지는 화면에만 ListView 렌더링 (최적화)
-  Widget renderListViewCaseTwo() {
+  ListView renderListViewCaseTwo() {
     return ListView.builder(
       itemCount: 100,
       itemBuilder: (context, index) {
@@ -46,7 +46,7 @@ class ListViewScreen extends StatelessWidget {
   }
 
   // separated를 이용하여 Widget 사이에 분리하는 Widget을 추가하여 ListView 렌더링
-  Widget renderListViewCaseThree() {
+  ListView renderListViewCaseThree() {
     return ListView.separated(
       separatorBuilder: (context, index) {
         index += 1;
